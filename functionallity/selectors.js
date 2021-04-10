@@ -1,3 +1,5 @@
+const WHITES='whites';
+const BLACKS='blacks';
 
     export const A1 = document.getElementById("A1");
     export const A2 = document.getElementById("A2");
@@ -30,6 +32,7 @@
     export const D2 = document.getElementById("D2");
     export const D3 = document.getElementById("D3");
     export const D4 = document.getElementById("D4");
+    export const D4T = D4.firstChild;
     export const D5 = document.getElementById("D5");
     export const D6 = document.getElementById("D6");
     export const D7 = document.getElementById("D7");
@@ -71,13 +74,13 @@
     export const H7 = document.getElementById("H7");
     export const H8 = document.getElementById("H8");
 
-    export function tokenDroper(position){
+    export function tokenDroper(position,colorGroup){
       position.innerHTML = `
-      <div class="token whites" ></div> 
+      <div class="token ${colorGroup}" ></div> 
       `;
     }
   
-  A1.addEventListener("click", () =>tokenDroper(A1));
+  A1.addEventListener("click", () =>tokenDroper(A1, WHITES));
   A2.addEventListener("click", () =>tokenDroper(A2));
   A3.addEventListener("click", () =>tokenDroper(A3));
   A4.addEventListener("click", () =>tokenDroper(A4));
@@ -86,7 +89,7 @@
   A7.addEventListener("click", () =>tokenDroper(A7));
   A8.addEventListener("click", () =>tokenDroper(A8));
   
-  B1.addEventListener("click", () =>tokenDroper(B1));
+  // B1.addEventListener("click", () =>tokenDroper(B1));
   B2.addEventListener("click", () =>tokenDroper(B2));
   B3.addEventListener("click", () =>tokenDroper(B3));
   B4.addEventListener("click", () =>tokenDroper(B4));
