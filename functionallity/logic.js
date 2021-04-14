@@ -10,15 +10,10 @@ class Token {
         this.coords=coords;
     }
     dropper(){
-        // if(this.colorGroup){
-            // console.log(selectors[this.id]);
+ 
             selectors[this.id].innerHTML = `
             <div class="token ${this.colorGroup}" ></div> 
             `;
-        // }
-
-        // masterBoard[this.colorGroup] = teamPlayer;
-
     }
 }
 
@@ -36,31 +31,17 @@ class Board {
 
 function mainLoop(turn, activateFlipper) {
     if (turn == 'player'){
-        // alert("It's your turn");
         console.log(`Es turno es de ${masterBoard.T} del team ${opponentTeam}`); 
         opponentTeam = 'blacks';
         teamPlayer = 'whites';  
         for (var tokens in masterBoard){
             if(masterBoard[tokens] != masterBoard.T){
-
-                // console.log(masterBoard[tokens]);               
-                // if(masterBoard[tokens] && masterBoard[tokens].colorGroup == teamPlayer){
                     if(masterBoard[tokens] && masterBoard[tokens].colorGroup == teamPlayer){
                         neighborChecker(masterBoard[tokens].coords,activateFlipper);                                
-                        // console.log(masterBoard[tokens]);
-                        // console.log(`${masterBoard[tokens].colorGroup} En ${masterBoard[tokens].coords}`); //PRUEBA AHORITA
                     }
-                    // else{
-                    //     console.log(masterBoard[tokens]);                    // PRUEBA DE AHORITA
-                    // }
-                    // else{
-                        //     console.log(masterBoard[tokens]);
-                        //     console.log(masterBoard[tokens].colorGroup);
-                        // }
             }
         }
     }else{
-        // alert('My turn');
     console.log(`Es turno de ${masterBoard.T} del team ${opponentTeam}`); 
         opponentTeam = 'whites';
         teamPlayer = 'blacks';  
@@ -68,12 +49,7 @@ function mainLoop(turn, activateFlipper) {
             if(masterBoard[tokens] != masterBoard.T){
                 if(masterBoard[tokens] && masterBoard[tokens].colorGroup == teamPlayer){
                     neighborChecker(masterBoard[tokens].coords,activateFlipper)
-                    // console.log(masterBoard[tokens].colorGroup);
-                    // console.log(`En ${masterBoard[tokens].coords}`);
                 }
-                // else{
-                //     console.log(masterBoard[tokens]);
-                // }
             }
         }
     }
@@ -81,13 +57,10 @@ function mainLoop(turn, activateFlipper) {
 
 function tokenFlipper(tokens, opponentTeam){
             for(var token of tokens){
-            // console.log(masterBoard[token].id);
-            // masterBoard[token].id.innerHTML = `
             selectors[token].innerHTML = `
             <div class="token ${opponentTeam}" ></div> 
             `;
             masterBoard[token].colorGroup = teamPlayer;
-            // console.log(masterBoard[token].colorGroup);
         }  
 }
 
@@ -99,30 +72,19 @@ function tokenBuilder(){
     masterBoard[this.id] = new Token(this.id,teamPlayer,coords);
     masterBoard[this.id].dropper();
 
-    // console.log(`ASÍ CONSTRUYO EL TOKEN.?`);
-    // console.log(`this: ${this}`);
-    // console.log(`this.id ${this.id}`);
-    // console.log(`MASTERBOARD.THIS: ${masterBoard.this}`);
-    // console.log(`MASTERBOARD.C5: ${masterBoard.C5}`);
-    // console.log(`MASTERBOARD.this.COLORGROUP ${masterBoard.this.colorGroup}`);
-
     neighborChecker(coords, true);
-    // console.log(`Es turno de  ${masterBoard.T} y sus fichas son ${teamPlayer}`);
     masterBoard.T = masterBoard.T === 'player'?'machine':'player';
-    // console.log(`el sig turn es de ${masterBoard.T} y sus fichas serán ${opponentTeam}`); 
     tokensFlipped = false;
     mainLoop(masterBoard.T, false);   
 }
 
 function clickListenerFactory(positionsAvailable){
-    // console.log(`agregar ${positionsAvailable}`)
     selectors[positionsAvailable].addEventListener("click", tokenBuilder);
     selectors[positionsAvailable].style.backgroundColor = 'white';
 }
 
 function clickEventDeleter(positionsAvailable){
     for (var position of positionsAvailable){
-        // console.log(`remover ${position}`);
         selectors[position].removeEventListener('click', tokenBuilder);
         selectors[position].style.backgroundColor = 'green';
     }
@@ -135,7 +97,6 @@ function neighborChecker(home, activateFlipper) {
     const wNeighbor = [letters[home[0]+1]]+[home[1]];
     const sNeighbor = [letters[home[0]]]+[home[1]+1];
     const eNeighbor = [letters[home[0]-1]]+[home[1]];
-    // console.log('sNeighbor: '+sNeighbor);       
     const NEIGHBORS = [nNeighbor,wNeighbor,sNeighbor,eNeighbor];
 
     for (var neighbor of NEIGHBORS){
@@ -165,14 +126,12 @@ function neighborChecker(home, activateFlipper) {
                     }
                     if (masterBoard[newNeighbor]) {
                         if (masterBoard[newNeighbor].colorGroup == opponentTeam) {
-                            // console.log("sigue aplicando funcion");
                             track.push(newNeighbor); // TOKENS THAN SHOULD BE FLIPPED
                             newHome = [
                                 values[newNeighbor.charAt(0)],
                                 parseInt(newNeighbor.charAt(1)),
                               ];
                         } else if ((masterBoard[newNeighbor].colorGroup == teamPlayer)&&(activateFlipper==true)) {
-                            // console.log(activateFlipper);
                             console.log(`FLIPPER EN ${track}`); //APPLY FLIPPER FUNCTION
                             clickEventDeleter(activeListeners);
                             activeListeners = []; 
@@ -181,10 +140,6 @@ function neighborChecker(home, activateFlipper) {
                             // },500);
                             follower = false;
                             tokensFlipped = true;
-                            // console.log(`Es turno de  ${turn}`);
-                            // turn = 'player'?nextTurn='machine':nextTurn='player';
-                            // return nextTurn;
-                            // mainLoop();
                         }else break;
                         
                     } else{
@@ -211,8 +166,6 @@ function neighborChecker(home, activateFlipper) {
     }
 }
 
-// var turn;
-// var nextTurn; 
 var coords = [];
 var masterBoard = new Board;
 masterBoard.T = 'player';
@@ -237,8 +190,3 @@ masterBoard.D4 = new Token('D4','whites',coords);
 masterBoard.D4.dropper();
 
 mainLoop(masterBoard.T,false);
-
-
-
-
-    
