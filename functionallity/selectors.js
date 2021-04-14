@@ -32,7 +32,6 @@ const BLACKS='blacks';
     export const D2 = document.getElementById("D2");
     export const D3 = document.getElementById("D3");
     export const D4 = document.getElementById("D4");
-    export const D4T = D4.firstChild;
     export const D5 = document.getElementById("D5");
     export const D6 = document.getElementById("D6");
     export const D7 = document.getElementById("D7");
@@ -74,81 +73,81 @@ const BLACKS='blacks';
     export const H7 = document.getElementById("H7");
     export const H8 = document.getElementById("H8");
 
-    export function tokenDroper(position,colorGroup){
-      position.innerHTML = `
-      <div class="token ${colorGroup}" ></div> 
-      `;
-    }
+    // export function tokenDroper(position,colorGroup){
+    //   position.innerHTML = `
+    //   <div class="token ${colorGroup}" ></div> 
+    //   `;
+    // }
   
-  A1.addEventListener("click", () =>tokenDroper(A1, WHITES));
-  A2.addEventListener("click", () =>tokenDroper(A2));
-  A3.addEventListener("click", () =>tokenDroper(A3));
-  A4.addEventListener("click", () =>tokenDroper(A4));
-  A5.addEventListener("click", () =>tokenDroper(A5));
-  A6.addEventListener("click", () =>tokenDroper(A6));
-  A7.addEventListener("click", () =>tokenDroper(A7));
-  A8.addEventListener("click", () =>tokenDroper(A8));
+  // A1.addEventListener("click", () =>tokenDroper(A1, WHITES));
+  // A2.addEventListener("click", () =>tokenDroper(A2));
+  // A3.addEventListener("click", () =>tokenDroper(A3));
+  // A4.addEventListener("click", () =>tokenDroper(A4));
+  // A5.addEventListener("click", () =>tokenDroper(A5));
+  // A6.addEventListener("click", () =>tokenDroper(A6));
+  // A7.addEventListener("click", () =>tokenDroper(A7));
+  // A8.addEventListener("click", () =>tokenDroper(A8));
   
-  // B1.addEventListener("click", () =>tokenDroper(B1));
-  B2.addEventListener("click", () =>tokenDroper(B2));
-  B3.addEventListener("click", () =>tokenDroper(B3));
-  B4.addEventListener("click", () =>tokenDroper(B4));
-  B5.addEventListener("click", () =>tokenDroper(B5));
-  B6.addEventListener("click", () =>tokenDroper(B6));
-  B7.addEventListener("click", () =>tokenDroper(B7));
-  B8.addEventListener("click", () =>tokenDroper(B8));
+  // // B1.addEventListener("click", () =>tokenDroper(B1));
+  // B2.addEventListener("click", () =>tokenDroper(B2));
+  // B3.addEventListener("click", () =>tokenDroper(B3));
+  // B4.addEventListener("click", () =>tokenDroper(B4));
+  // B5.addEventListener("click", () =>tokenDroper(B5));
+  // B6.addEventListener("click", () =>tokenDroper(B6));
+  // B7.addEventListener("click", () =>tokenDroper(B7));
+  // B8.addEventListener("click", () =>tokenDroper(B8));
 
-  C1.addEventListener("click", () =>tokenDroper(C1));
-  C2.addEventListener("click", () =>tokenDroper(C2));
-  C3.addEventListener("click", () =>tokenDroper(C3));
-  C4.addEventListener("click", () =>tokenDroper(C4));
-  C5.addEventListener("click", () =>tokenDroper(C5));
-  C6.addEventListener("click", () =>tokenDroper(C6));
-  C7.addEventListener("click", () =>tokenDroper(C7));
-  C8.addEventListener("click", () =>tokenDroper(C8));
+  // C1.addEventListener("click", () =>tokenDroper(C1));
+  // C2.addEventListener("click", () =>tokenDroper(C2));
+  // C3.addEventListener("click", () =>tokenDroper(C3));
+  // C4.addEventListener("click", () =>tokenDroper(C4));
+  // C5.addEventListener("click", () =>tokenDroper(C5));
+  // C6.addEventListener("click", () =>tokenDroper(C6));
+  // C7.addEventListener("click", () =>tokenDroper(C7));
+  // C8.addEventListener("click", () =>tokenDroper(C8));
 
-  D1.addEventListener("click", () =>tokenDroper(D1));
-  D2.addEventListener("click", () =>tokenDroper(D2));
-  D3.addEventListener("click", () =>tokenDroper(D3));
-  // D4.addEventListener("click", () =>tokenDroper(D4));
-  // D5.addEventListener("click", () =>tokenDroper(D5));
-  D6.addEventListener("click", () =>tokenDroper(D6));
-  D7.addEventListener("click", () =>tokenDroper(D7));
-  D8.addEventListener("click", () =>tokenDroper(D8));
+  // D1.addEventListener("click", () =>tokenDroper(D1));
+  // D2.addEventListener("click", () =>tokenDroper(D2));
+  // D3.addEventListener("click", () =>tokenDroper(D3));
+  // // D4.addEventListener("click", () =>tokenDroper(D4));
+  // // D5.addEventListener("click", () =>tokenDroper(D5));
+  // D6.addEventListener("click", () =>tokenDroper(D6));
+  // D7.addEventListener("click", () =>tokenDroper(D7));
+  // D8.addEventListener("click", () =>tokenDroper(D8));
   
-  E1.addEventListener("click", () =>tokenDroper(E1));
-  E2.addEventListener("click", () =>tokenDroper(E2));
-  E3.addEventListener("click", () =>tokenDroper(E3));
-  // E4.addEventListener("click", () =>tokenDroper(E4));
-  // E5.addEventListener("click", () =>tokenDroper(E5));
-  E6.addEventListener("click", () =>tokenDroper(E6));
-  E7.addEventListener("click", () =>tokenDroper(E7));
-  E8.addEventListener("click", () =>tokenDroper(E8));
+  // E1.addEventListener("click", () =>tokenDroper(E1));
+  // E2.addEventListener("click", () =>tokenDroper(E2));
+  // E3.addEventListener("click", () =>tokenDroper(E3));
+  // // E4.addEventListener("click", () =>tokenDroper(E4));
+  // // E5.addEventListener("click", () =>tokenDroper(E5));
+  // E6.addEventListener("click", () =>tokenDroper(E6));
+  // E7.addEventListener("click", () =>tokenDroper(E7));
+  // E8.addEventListener("click", () =>tokenDroper(E8));
   
-  F1.addEventListener("click", () =>tokenDroper(F1));
-  F2.addEventListener("click", () =>tokenDroper(F2));
-  F3.addEventListener("click", () =>tokenDroper(F3));
-  F4.addEventListener("click", () =>tokenDroper(F4));
-  F5.addEventListener("click", () =>tokenDroper(F5));
-  F6.addEventListener("click", () =>tokenDroper(F6));
-  F7.addEventListener("click", () =>tokenDroper(F7));
-  F8.addEventListener("click", () =>tokenDroper(F8));
+  // F1.addEventListener("click", () =>tokenDroper(F1));
+  // F2.addEventListener("click", () =>tokenDroper(F2));
+  // F3.addEventListener("click", () =>tokenDroper(F3));
+  // F4.addEventListener("click", () =>tokenDroper(F4));
+  // F5.addEventListener("click", () =>tokenDroper(F5));
+  // F6.addEventListener("click", () =>tokenDroper(F6));
+  // F7.addEventListener("click", () =>tokenDroper(F7));
+  // F8.addEventListener("click", () =>tokenDroper(F8));
   
-  G1.addEventListener("click", () =>tokenDroper(G1));
-  G2.addEventListener("click", () =>tokenDroper(G2));
-  G3.addEventListener("click", () =>tokenDroper(G3));
-  G4.addEventListener("click", () =>tokenDroper(G4));
-  G5.addEventListener("click", () =>tokenDroper(G5));
-  G6.addEventListener("click", () =>tokenDroper(G6));
-  G7.addEventListener("click", () =>tokenDroper(G7));
-  G8.addEventListener("click", () =>tokenDroper(G8));
+  // G1.addEventListener("click", () =>tokenDroper(G1));
+  // G2.addEventListener("click", () =>tokenDroper(G2));
+  // G3.addEventListener("click", () =>tokenDroper(G3));
+  // G4.addEventListener("click", () =>tokenDroper(G4));
+  // G5.addEventListener("click", () =>tokenDroper(G5));
+  // G6.addEventListener("click", () =>tokenDroper(G6));
+  // G7.addEventListener("click", () =>tokenDroper(G7));
+  // G8.addEventListener("click", () =>tokenDroper(G8));
   
-  H1.addEventListener("click", () =>tokenDroper(H1));
-  H2.addEventListener("click", () =>tokenDroper(H2));
-  H3.addEventListener("click", () =>tokenDroper(H3));
-  H4.addEventListener("click", () =>tokenDroper(H4));
-  H5.addEventListener("click", () =>tokenDroper(H5));
-  H6.addEventListener("click", () =>tokenDroper(H6));
-  H7.addEventListener("click", () =>tokenDroper(H7));
-  H8.addEventListener("click", () =>tokenDroper(H8));
+  // H1.addEventListener("click", () =>tokenDroper(H1));
+  // H2.addEventListener("click", () =>tokenDroper(H2));
+  // H3.addEventListener("click", () =>tokenDroper(H3));
+  // H4.addEventListener("click", () =>tokenDroper(H4));
+  // H5.addEventListener("click", () =>tokenDroper(H5));
+  // H6.addEventListener("click", () =>tokenDroper(H6));
+  // H7.addEventListener("click", () =>tokenDroper(H7));
+  // H8.addEventListener("click", () =>tokenDroper(H8));
   
