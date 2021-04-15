@@ -30,26 +30,13 @@ class Board {
 }
 
 function mainLoop(turn, activateFlipper) {
-    if (turn == 'player'){
-        console.log(`Es turno es de ${masterBoard.T} del team ${opponentTeam}`); 
-        opponentTeam = 'blacks';
-        teamPlayer = 'whites';  
-        for (var tokens in masterBoard){
-            if(masterBoard[tokens] != masterBoard.T){
-                    if(masterBoard[tokens] && masterBoard[tokens].colorGroup == teamPlayer){
-                        neighborChecker(masterBoard[tokens].coords,activateFlipper);                                
-                    }
-            }
-        }
-    }else{
-    console.log(`Es turno de ${masterBoard.T} del team ${opponentTeam}`); 
-        opponentTeam = 'whites';
-        teamPlayer = 'blacks';  
-        for (var tokens in masterBoard){
-            if(masterBoard[tokens] != masterBoard.T){
-                if(masterBoard[tokens] && masterBoard[tokens].colorGroup == teamPlayer){
-                    neighborChecker(masterBoard[tokens].coords,activateFlipper)
-                }
+    opponentTeam = turn == 'player'?'blacks':'whites';
+    teamPlayer = turn == 'player'?'whites':'blacks';
+    console.log(`Es turno es de ${masterBoard.T} del team ${teamPlayer}`); 
+    for (var tokens in masterBoard){
+        if(masterBoard[tokens] != masterBoard.T){
+            if(masterBoard[tokens] && masterBoard[tokens].colorGroup == teamPlayer){
+                neighborChecker(masterBoard[tokens].coords,activateFlipper);                                
             }
         }
     }
@@ -64,6 +51,20 @@ function tokenFlipper(tokens, opponentTeam){
         }  
 }
 
+function whoWon () {
+    var teamPlayerTokens=0;
+    var opponentTeamTokens=0;
+    for (var token in masterBoard){
+        if((masterBoard[token] != masterBoard.T) && (masterBoard[token])){
+            if (masterBoard[token].colorGroup === teamPlayer){
+                teamPlayerTokens++;
+            }else opponentTeamTokens++;
+        const winTeam = teamPlayerTokens > opponentTeamTokens ? 'player' : 'machine';
+        alert(`EL GANADOR ES ${winTeam} CON ${teamPlayerTokens} FICHAS`);
+        }
+    }
+}
+
 function tokenBuilder(){
     const values = {
         A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8
@@ -75,7 +76,11 @@ function tokenBuilder(){
     neighborChecker(coords, true);
     masterBoard.T = masterBoard.T === 'player'?'machine':'player';
     tokensFlipped = false;
-    mainLoop(masterBoard.T, false);   
+    mainLoop(masterBoard.T, false);
+    if (activeListeners == 0){
+        whoWon();
+        return;
+    }
 }
 
 function clickListenerFactory(positionsAvailable){
@@ -92,12 +97,17 @@ function clickEventDeleter(positionsAvailable){
 
 function neighborChecker(home, activateFlipper) {
     const letters = ['-','A','B','C','D','E','F','G','H'];
-    const values = {A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8}
+    const values = {A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8};
     const nNeighbor = [letters[home[0]]]+[home[1]-1];
-    const wNeighbor = [letters[home[0]+1]]+[home[1]];
+    const neNeighbor = [letters[home[0]+1]]+[home[1]-1];
+    const eNeighbor = [letters[home[0]+1]]+[home[1]];
+    const seNeighbor = [letters[home[0]+1]]+[home[1]+1];
     const sNeighbor = [letters[home[0]]]+[home[1]+1];
-    const eNeighbor = [letters[home[0]-1]]+[home[1]];
-    const NEIGHBORS = [nNeighbor,wNeighbor,sNeighbor,eNeighbor];
+    const swNeighbor = [letters[home[0]-1]]+[home[1]+1];
+    const wNeighbor = [letters[home[0]-1]]+[home[1]];
+    const nwNeighbor = [letters[home[0]-1]]+[home[1]-1];
+
+    const NEIGHBORS = [nNeighbor,neNeighbor,eNeighbor,seNeighbor,sNeighbor,swNeighbor,wNeighbor,nwNeighbor];
 
     for (var neighbor of NEIGHBORS){
         if(masterBoard[neighbor]){
@@ -111,18 +121,31 @@ function neighborChecker(home, activateFlipper) {
                     parseInt(neighbor.charAt(1)),
                   ]; //NEEDS COORDS IN NUMBERS FROM 1ST NEIGHBOR
                 while (follower) {                       
-                    switch (direction){
-                        case 0:
-                          newNeighbor = [letters[newHome[0]]] + [newHome[1] - 1];
-                          break;
-                        case 1:
-                          newNeighbor = [letters[newHome[0] + 1]] + [newHome[1]];
-                          break;
-                        case 2:
-                          newNeighbor = [letters[newHome[0]]] + [newHome[1] + 1];
-                          break;
-                        case 3:
-                          newNeighbor = [letters[newHome[0] - 1]] + [newHome[1]];
+                    switch (direction) {
+                      case 0:
+                        newNeighbor = [letters[newHome[0]]] + [newHome[1] - 1];
+                        break;
+                      case 1:
+                        newNeighbor = [letters[newHome[0] + 1]] + [newHome[1] - 1];
+                        break;
+                      case 2:
+                        newNeighbor = [letters[newHome[0] + 1]] + [newHome[1]];
+                        break;
+                      case 3:
+                        newNeighbor = [letters[newHome[0] + 1]] + [newHome[1] + 1];
+                        break;
+                      case 4:
+                        newNeighbor = [letters[newHome[0]]] + [newHome[1] + 1];
+                        break;
+                      case 5:
+                        newNeighbor = [letters[newHome[0] - 1]] + [newHome[1] + 1];
+                        break;
+                      case 6:
+                        newNeighbor = [letters[newHome[0] - 1]] + [newHome[1]];
+                        break;
+                      case 7:
+                        newNeighbor = [letters[newHome[0] - 1]] + [newHome[1] - 1];
+                        break;
                     }
                     if (masterBoard[newNeighbor]) {
                         if (masterBoard[newNeighbor].colorGroup == opponentTeam) {
@@ -147,13 +170,14 @@ function neighborChecker(home, activateFlipper) {
                         else{
                             if (
                                 !isNaN(newNeighbor) ||
+                                newNeighbor.charAt(2) ||
                                 values[newNeighbor.charAt(0)] > 8 ||
                                 parseInt(newNeighbor.charAt(1)) > 8 ||
                                 values[newNeighbor.charAt(0)] < 1 ||
                                 parseInt(newNeighbor.charAt(1)) < 1
                                 ) break;
                                 else{
-                                console.log(`PON LA FICHA EN ${newNeighbor}`);
+                                // console.log(`PON LA FICHA EN ${newNeighbor}`);
                                 activeListeners.push(newNeighbor);
                                 clickListenerFactory(newNeighbor); //ADDING EVENT LISTENERS
                                 follower = false;
@@ -171,7 +195,7 @@ var masterBoard = new Board;
 masterBoard.T = 'player';
 var opponentTeam;
 var teamPlayer;
-var winner = undefined;
+var winner = [];
 var activeListeners = [];
 var tokensFlipped = false;
 
