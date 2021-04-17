@@ -10,7 +10,6 @@ class Token {
         this.coords=coords;
     }
     dropper(){
- 
             selectors[this.id].innerHTML = `
             <div class="token ${this.colorGroup}" ></div> 
             `;
@@ -27,6 +26,24 @@ class Board {
     A7;B7;C7;D7;E7;F7;G7;H7;
     A8;B8;C8;D8;E8;F8;G8;H8;
     T;
+}
+function startGame () {
+    selectors.modal.classList.add('visible');
+    selectors.btn1.addEventListener('click', ()=>{
+        selectors.modal.classList.remove('visible');
+    })
+    coords = [4,5];
+    masterBoard.D5 = new Token('D5','blacks',coords);
+    masterBoard.D5.dropper();
+    coords = [5,4];
+    masterBoard.E4 = new Token('E4','blacks',coords);
+    masterBoard.E4.dropper();
+    coords = [5,5];
+    masterBoard.E5 = new Token('E5','whites',coords);
+    masterBoard.E5.dropper();
+    coords = [4,4];
+    masterBoard.D4 = new Token('D4','whites',coords);
+    masterBoard.D4.dropper();
 }
 
 function mainLoop(turn, activateFlipper) {
@@ -50,6 +67,19 @@ function tokenFlipper(tokens, opponentColorTeam){
             masterBoard[token].colorGroup = colorTeam;
         }  
 }
+function reset () {
+    for (var token in masterBoard){
+        if (masterBoard[token] != masterBoard.T){
+        masterBoard[token]=0;
+        selectors[token].innerHTML = `
+            <div class="token"></div> 
+            `;
+        }
+    }      
+    console.log(masterBoard);
+    startGame();
+    mainLoop('player',false);
+}
 
 function whoWon () {
     var colorTeamTokens=0;
@@ -65,8 +95,8 @@ function whoWon () {
             }
         }
     }
-    const winTeam = colorTeamTokens > opponentColorTeamTokens ? ['whites',colorTeamTokens] : ['blacks',opponentColorTeamTokens];
-    alert(`GANARON LAS FICHAS ${(winTeam[0]).toUpperCase()} CON ${winTeam[1]} FICHAS`);
+    const winner = colorTeamTokens > opponentColorTeamTokens ? ['whites',colorTeamTokens] : ['blacks',opponentColorTeamTokens];
+    alert(`GANARON LAS FICHAS ${(winner[0]).toUpperCase()} CON ${winner[1]} FICHAS`);
 }
 
 function tokenBuilder(){
@@ -81,17 +111,12 @@ function tokenBuilder(){
     tokensFlipped = false;
     mainLoop(masterBoard.T, false);
     if (activeListeners == 0){
-        if (activeListeners.length == 0){
-            for (var token in masterBoard){
-                masterBoard[token];
-            }
-            console.log(masterBoard);
-        }
             setTimeout(() => {
-                whoWon();   
+                whoWon();
+                reset();   
             }, 500);
             return 
-    }   
+        }   
     if (masterBoard.T === 'machine') {
         setTimeout(() => {
             machinePlayer(); // calls machine to play when it's its turn    
@@ -101,8 +126,8 @@ function tokenBuilder(){
 
 function machinePlayer() {
         const opponentToken = Math.floor((activeListeners.length)*Math.random());
-        console.log(opponentToken);
-        console.log(activeListeners[opponentToken]);
+        // console.log(opponentToken);
+        // console.log(activeListeners[opponentToken]);
         selectors[activeListeners[opponentToken]].click();
 }
 
@@ -210,27 +235,14 @@ function neighborChecker(home, activateFlipper) {
     }
 }
 
-var coords = [];
 var masterBoard = new Board;
-masterBoard.T = 'player';
-var opponentColorTeam;
-var colorTeam;
-var winner = [];
+var coords = [];
 var activeListeners = [];
 var tokensFlipped = false;
 
+masterBoard.T = 'player';
+var colorTeam;
+var opponentColorTeam;
 
-coords = [4,5];
-masterBoard.D5 = new Token('D5','blacks',coords);
-masterBoard.D5.dropper();
-coords = [5,4];
-masterBoard.E4 = new Token('E4','blacks',coords);
-masterBoard.E4.dropper();
-coords = [5,5];
-masterBoard.E5 = new Token('E5','whites',coords);
-masterBoard.E5.dropper();
-coords = [4,4];
-masterBoard.D4 = new Token('D4','whites',coords);
-masterBoard.D4.dropper();
-
+startGame(); 
 mainLoop(masterBoard.T,false);

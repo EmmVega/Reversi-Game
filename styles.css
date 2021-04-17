@@ -5,10 +5,13 @@
 }
 #title{
     background-color: green;
-    color: black;
+    color: rgb(46, 42, 42);
     font-size: 50px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: center;
+}
+body{
+    background-color: rgb(53, 53, 53);
 }
 main{
     background-color: green;
@@ -48,3 +51,40 @@ main{
     background-color: rgb(0, 0, 0);
     border: 3px inset black;
 }
+#modal{
+    display: none;
+    width: 400px;
+    height: 200px;
+    position:absolute;
+    left: 0; 
+    right: 0; 
+    top: 20%;
+    margin-left: auto; 
+    margin-right: auto; 
+    margin-top: auto;
+    padding: 5px;
+    background-color: rgb(218, 224, 218);
+    border: dotted black;
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    align-items:center
+}
+#modal.visible{
+    display: block;
+}
+#btn1,#btn2,#btn3,#btn4{
+    display: none;
+    color: black;
+    background-color: rgb(216, 175, 109);
+    padding: 5px;
+}
+#btn1,#btn2.visible{
+    display: block;
+    align-items: center;
+    margin:auto;
+    margin-top: 40px;
+}
+#btn3,#btn4.visible{
+    display: block;
+}
+
