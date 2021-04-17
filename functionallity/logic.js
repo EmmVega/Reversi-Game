@@ -15,7 +15,6 @@ class Token {
             `;
     }
 }
-
 class Board {
     A1;B1;C1;D1;E1;F1;G1;H1;
     A2;B2;C2;D2;E2;F2;G2;H2;
@@ -45,7 +44,6 @@ function startGame () {
     masterBoard.D4 = new Token('D4','whites',coords);
     masterBoard.D4.dropper();
 }
-
 function mainLoop(turn, activateFlipper) {
     opponentColorTeam = turn == 'player'?'blacks':'whites';
     colorTeam = turn == 'player'?'whites':'blacks';
@@ -58,7 +56,6 @@ function mainLoop(turn, activateFlipper) {
         }
     }
 }
-
 function tokenFlipper(tokens, opponentColorTeam){
         for(var token of tokens){
             selectors[token].innerHTML = `
@@ -80,7 +77,6 @@ function reset () {
     startGame();
     mainLoop('player',false);
 }
-
 function whoWon () {
     var colorTeamTokens=0;
     var opponentColorTeamTokens=0;
@@ -98,7 +94,6 @@ function whoWon () {
     const winner = colorTeamTokens > opponentColorTeamTokens ? ['whites',colorTeamTokens] : ['blacks',opponentColorTeamTokens];
     alert(`GANARON LAS FICHAS ${(winner[0]).toUpperCase()} CON ${winner[1]} FICHAS`);
 }
-
 function tokenBuilder(){
     const values = {
         A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8
@@ -123,23 +118,18 @@ function tokenBuilder(){
         }, 500); 
     }
 }
-
 function machinePlayer() {
         const opponentToken = Math.floor((activeListeners.length)*Math.random());
-        // console.log(opponentToken);
-        // console.log(activeListeners[opponentToken]);
         selectors[activeListeners[opponentToken]].click();
 }
 
 function clickListenerFactory(positionsAvailable){
     selectors[positionsAvailable].addEventListener("click", tokenBuilder);
-    // selectors[positionsAvailable].style.backgroundColor = 'white';
 }
 
 function clickEventDeleter(positionsAvailable){
     for (var position of positionsAvailable){
         selectors[position].removeEventListener('click', tokenBuilder);
-        // selectors[position].style.backgroundColor = 'green';
     }
 } 
 
